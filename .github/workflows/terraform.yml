@@ -4,11 +4,11 @@ on:
     branches:
       - main
   
- permssions:
+permissions:
   contents: read
   id-token: write
-jobs:
 
+jobs:
   terraform:
     name: 'Terraform'  
     runs-on: ubuntu-latest
@@ -18,18 +18,21 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-              role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-              aws-region: ap-south-1
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ap-south-1
+
       - name: Terraform Init
         run: terraform init
+
       - name: Terraform Format
         run: terraform fmt -check
+
       - name: Terraform Validate           
         run: terraform validate
-      - name: Terraform Plan
-        run: terraform plan  
 
-      
+      - name: Terraform Plan
+        run: terraform plan
