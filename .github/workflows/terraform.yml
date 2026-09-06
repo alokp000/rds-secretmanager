@@ -3,9 +3,7 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+  
  permssions:
   contents: read
   id-token: write
